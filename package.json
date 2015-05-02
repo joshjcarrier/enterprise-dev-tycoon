@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -e \"var ex=require('express');var app=ex();app.use(ex.static('html'));app.listen(8000)\""
+    "start": "npm run watch & npm run start-server",
+    "watch": "watchify js/main.js -t reactify -o html/bundle.js -dv",
+    "start-server": "node -e \"var ex=require('express');var app=ex();app.use(ex.static('html'));app.listen(8000)\""
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/joshjcarrier/enterprise-dev-tycoon",
   "dependencies": {
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "reactify": "^1.1.0",
+    "watchify": "^3.2.1"
   }
 }
