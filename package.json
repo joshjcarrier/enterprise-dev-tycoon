@@ -20,6 +20,7 @@
   "homepage": "https://github.com/joshjcarrier/enterprise-dev-tycoon",
   "dependencies": {
     "express": "^4.12.3",
+    "react": "^0.13.2",
     "reactify": "^1.1.0",
     "watchify": "^3.2.1"
   }

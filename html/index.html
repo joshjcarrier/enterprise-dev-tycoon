@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://fb.me/react-0.13.2.js"></script>
-    <script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-      <script src="fbIntegration.js"></script>
+    <script src="fbIntegration.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -22,91 +19,9 @@
             <div id="employee"></div>
         </div>
         <div id="content-stats" class="col-md-4"></div>
-
       </div>
-      
     </div>
 
-    <script type="text/jsx">
-      var data_stats = [
-        {name: "% Complete", progress: 0 },
-        {name: "Morale", progress: 0 },
-        {name: "Technical Debt", progress: 0 },
-        {name: "Management", progress: 0 },
-        {name: "Spend Rate", progress: 0 }
-      ];
-
-        var StatsBox = React.createClass({
-        render: function() {
-          return (
-            <div className="row">
-              <div className="col-md-4 label label-default">
-                {this.props.name}
-              </div>
-
-              <div className="col-md-8">
-                <div className="progress">
-                  <div className="progress-bar" role="progressbar" aria-valuenow="{this.props.progress}" aria-valuemin="0" aria-valuemax="100" style={{width: this.props.progress+"%"}}>
-                      <span className="sr-only">{this.props.progress}% Complete</span>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          );
-        }
-      });
-
-      var StatsList = React.createClass({
-        getInitialState: function() {
-          return {secondsElapsed: 0};
-        },
-        tick: function() {
-          this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-        },
-        componentDidMount: function() {
-          this.interval = setInterval(this.tick, 1000);
-        },
-        componentWillUnmount: function() {
-          clearInterval(this.interval);
-        },
-        render: function() {
-            var state = this.state;
-            var statsNodes = this.props.data.map(function (stat) {
-              return (
-                <StatsBox name={stat.name} progress={stat.progress + state.secondsElapsed} />
-              );
-            });
-            return (
-              <div className="statsList">
-                {statsNodes}
-              </div>
-            );
-          }
-      });
-
-      var EmployeeImage = React.createClass({
-        render: function() {
-            return (
-                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/v/t1.0-1/10488140_1065868170096695_3898163317204824605_n.jpg?oh=0e3e01d9b3073d28b05be2057ea3f68a&oe=55CC5B9A&__gda__=1440822306_2703ad69eed02c066c8ab6cf73799877" />
-                );
-        }
-      });
-
-      var Employee = React.createClass({
-        render: function(){
-            return (
-                <EmployeeImage />
-                );
-        }
-      });
-
-      React.render(
-        <StatsList data={data_stats}/>,
-        document.getElementById('content-stats')
-      );
-      React.render(
-        <Employee/>, document.getElementById('employee')
-      );
-      </script>
+    <script src="bundle.js"></script>
   </body>
 </html>
