@@ -1,31 +1,75 @@
-  <html>
-	  <head>
-	  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  
-	i = 0;
-    
-	function doit() {
-        $( "#progressbar" ).progressbar({
-	      value: i
-	    });
+ <!DOCTYPE html>
+ <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	    i++;
+    <script src="https://fb.me/react-0.13.2.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 
-	    setTimeout(doit, 1000);
-	}
-
-  	$(document).ready(function(){
-		setTimeout(doit, 1000);
-	});
-
-  </script>
-	  </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+ </head>
   <body>
-    <div id="progressbar"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div id="content-stats" class="col-md-4"></div>
 
+      </div>
+      
+    </div>
+
+    <script type="text/jsx">
+      var data_stats = [
+        {name: "% Complete", progress: 0 },
+        {name: "Morale", progress: 0 },
+        {name: "Technical Debt", progress: 0 },
+        {name: "Management", progress: 0 },
+        {name: "Spend Rate", progress: 0 }
+      ];
+
+        var StatsBox = React.createClass({
+        render: function() {
+          return (
+            <div className="row">
+              <div className="col-md-4 label label-default">
+                {this.props.name}
+              </div>
+
+              <div className="col-md-8">
+                <div className="progress">
+                  <div className="progress-bar" role="progressbar" aria-valuenow="{this.props.progress}" aria-valuemin="0" aria-valuemax="100" style={{width: this.props.progress+"%"}}>
+                      <span className="sr-only">{this.props.progress}% Complete</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          );
+        }
+      });
+
+      var StatsList = React.createClass({
+        render: function() {
+            var statsNodes = this.props.data.map(function (stat) {
+              return (
+                <StatsBox name={stat.name} progress={stat.progress} />
+              );
+            });
+            return (
+              <div className="statsList">
+                {statsNodes}
+              </div>
+            );
+          }
+      });
+
+      React.render(
+        <StatsList data={data_stats}/>,
+        document.getElementById('content-stats')
+      );
+      </script>
   </body>
-  </html>
+</html>
