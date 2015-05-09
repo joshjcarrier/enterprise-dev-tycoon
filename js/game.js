@@ -11,14 +11,15 @@ var Game = (function() {
     this.updateListeners = [];
   }
 
-  Game.prototype.decrementDemo = function() {
-    // demo simulation
-    for (var id in data_stats) {
+  Game.prototype.update = function(action) {
+    console.log("Game#update: " + action.name);
+    var deltas = action.deltas;
+    for (var id in deltas) {
       if(data_stats[id].value > 100) {
         data_stats[id].value = 100;
       }
       
-      data_stats[id].value -= 5;
+      data_stats[id].value += deltas[id].delta;
     }
   }
 
@@ -46,7 +47,11 @@ var Game = (function() {
 	Game.prototype.__tick = function() {
     // simulation
     for (var id in data_stats) {
-      data_stats[id].value += 1;
+      if (data_stats[id].value > 50) {
+        data_stats[id].value -= 1;
+      } else if (data_stats[id].value < 50) {
+        data_stats[id].value += 1;
+      }
     }
 
     for (var i = this.updateListeners.length - 1; i >= 0; i--) {
