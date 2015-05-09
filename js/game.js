@@ -11,6 +11,17 @@ var Game = (function() {
     this.updateListeners = [];
   }
 
+  Game.prototype.decrementDemo = function() {
+    // demo simulation
+    for (var id in data_stats) {
+      if(data_stats[id].value > 100) {
+        data_stats[id].value = 100;
+      }
+      
+      data_stats[id].value -= 5;
+    }
+  }
+
   Game.prototype.addUpdateListener = function(listener) {
     this.updateListeners.push(listener);
   }
