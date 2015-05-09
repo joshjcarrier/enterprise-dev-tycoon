@@ -2,10 +2,10 @@ var React = require('react')
 
 var StatsBox = React.createClass({
   getInitialState: function() {
-    return {ticks: 0};
+    return {stat: this.props.game.statistics[this.props.id]};
   },
   update: function() {
-    this.setState({ticks: this.state.ticks + 0.1});
+    this.setState({stat: this.props.game.statistics[this.props.id]});
   },
   componentDidMount: function() {
     this.props.game.addUpdateListener(this);
@@ -14,22 +14,22 @@ var StatsBox = React.createClass({
     this.props.game.removeUpdateListener(this);
   },
   render: function() {
-    var state = this.state;
+    var stat = this.state.stat;
     return (
       <div className="row edt-stats-box">
-        <div className="col-md-4 label label-default">
-          {this.props.name}
+        <div className="col-xs-4 label label-default">
+          {stat.name}
         </div>
 
-        <div className="col-md-8">
+        <div className="col-xs-8">
           <div className="progress">
             <div className="progress-bar" 
                  role="progressbar" 
-                 aria-valuenow="{state.ticks}" 
+                 aria-valuenow="{stat.value}" 
                  aria-valuemin="0" 
                  aria-valuemax="100" 
-                 style={{width: state.ticks+"%"}}>
-                <span className="sr-only">{state.ticks}%</span>
+                 style={{width: stat.value+"%"}}>
+                <span className="sr-only">{stat.value}%</span>
               </div>
             </div>
           </div>

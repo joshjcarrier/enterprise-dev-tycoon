@@ -1,10 +1,10 @@
-var data_stats = [
-  {name: "% Complete", progress: 0 },
-  {name: "Morale", progress: 0 },
-  {name: "Technical Debt", progress: 0 },
-  {name: "Management", progress: 0 },
-  {name: "Spend Rate", progress: 0 }
-];
+var data_stats = {
+  "PERCENT_COMPLETE": {name: "% Complete", value: 0 },
+  "MORALE":           {name: "Morale", value: 0 },
+  "TECH_DEBT":        {name: "Technical Debt", value: 0 },
+  "MANAGEMENT":       {name: "Management", value: 0 },
+  "SPEND_RATE":       {name: "Spend Rate", value: 0 }
+};
 
 var Game = (function() {
   function Game() {
@@ -33,6 +33,11 @@ var Game = (function() {
   Game.prototype.statistics = data_stats;
 
 	Game.prototype.__tick = function() {
+    // simulation
+    for (var id in data_stats) {
+      data_stats[id].value += 1;
+    }
+
     for (var i = this.updateListeners.length - 1; i >= 0; i--) {
       this.updateListeners[i].update(this);
     };

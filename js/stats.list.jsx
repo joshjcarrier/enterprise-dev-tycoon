@@ -4,9 +4,9 @@ var StatsBox = require('./stats.box.jsx')
 var StatsList = React.createClass({
   render: function() {
       var parent = this;
-      var statsNodes = this.props.game.statistics.map(function (stat) {
+      var statsNodes = Object.keys(this.props.game.statistics).map(function (id) {
         return (
-          <StatsBox name={stat.name} game={parent.props.game} />
+          <StatsBox id={id} game={parent.props.game} />
         );
       });
       return (
