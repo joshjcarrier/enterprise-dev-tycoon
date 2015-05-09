@@ -3,22 +3,22 @@ var StatsBox = require('./stats.box.jsx')
 
 var StatsList = React.createClass({
   getInitialState: function() {
-    return {secondsElapsed: 0};
+    return {ticks: 0};
   },
-  tick: function() {
-    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+  onTick: function() {
+    this.setState({ticks: this.state.ticks + 0.1});
   },
   componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
+    this.props.game.addTickListener(this);
   },
   componentWillUnmount: function() {
-    clearInterval(this.interval);
+    this.props.game.removeTickListener(this);
   },
   render: function() {
       var state = this.state;
       var statsNodes = this.props.data.map(function (stat) {
         return (
-          <StatsBox name={stat.name} progress={stat.progress + state.secondsElapsed} />
+          <StatsBox name={stat.name} progress={stat.progress + state.ticks} />
         );
       });
       return (
