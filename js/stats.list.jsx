@@ -5,14 +5,14 @@ var StatsList = React.createClass({
   getInitialState: function() {
     return {ticks: 0};
   },
-  onTick: function() {
+  update: function() {
     this.setState({ticks: this.state.ticks + 0.1});
   },
   componentDidMount: function() {
-    this.props.game.addTickListener(this);
+    this.props.game.addUpdateListener(this);
   },
   componentWillUnmount: function() {
-    this.props.game.removeTickListener(this);
+    this.props.game.removeUpdateListener(this);
   },
   render: function() {
       var state = this.state;

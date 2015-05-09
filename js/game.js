@@ -8,15 +8,15 @@ var data_stats = [
 
 var Game = (function() {
   function Game() {
-    this.tickListeners = [];
+    this.updateListeners = [];
   }
 
-  Game.prototype.addTickListener = function(listener) {
-    this.tickListeners.push(listener);
+  Game.prototype.addUpdateListener = function(listener) {
+    this.updateListeners.push(listener);
   }
 
-  Game.prototype.removeTickListener = function(listener) {
-    this.tickListeners.removeAt(this.tickListeners.indexOf(listener, 0));
+  Game.prototype.removeUpdateListener = function(listener) {
+    this.updateListeners.removeAt(this.updateListeners.indexOf(listener, 0));
   }
 
 	Game.prototype.start = function() {
@@ -33,8 +33,8 @@ var Game = (function() {
   Game.prototype.statistics = data_stats;
 
 	Game.prototype.__tick = function() {
-    for (var i = this.tickListeners.length - 1; i >= 0; i--) {
-      this.tickListeners[i].onTick()
+    for (var i = this.updateListeners.length - 1; i >= 0; i--) {
+      this.updateListeners[i].update(this);
     };
 	}
 
