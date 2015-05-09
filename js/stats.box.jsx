@@ -3,7 +3,7 @@ var React = require('react')
 var StatsBox = React.createClass({
   render: function() {
     return (
-      <div className="row">
+      <div className="row edt-stats-box">
         <div className="col-md-4 label label-default">
           {this.props.name}
         </div>

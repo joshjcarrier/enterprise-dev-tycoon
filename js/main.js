@@ -12,10 +12,10 @@ game.start();
 
 React.render(
 	<StatsList game={game}/>,
-	document.getElementById('content-stats')
+	document.getElementById('edt-stats-list--container')
 );
 
 React.render(
 	<Employee/>, 
-	document.getElementById('employee')
+	document.getElementById('edt-employee--container')
 );

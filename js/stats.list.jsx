@@ -22,7 +22,7 @@ var StatsList = React.createClass({
         );
       });
       return (
-        <div className="statsList">
+        <div className="edt-stats-list">
           {statsNodes}
         </div>
       );
