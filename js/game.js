@@ -1,9 +1,9 @@
 var data_stats = {
-  "PERCENT_COMPLETE": {name: "% Complete", value: 0 },
-  "MORALE":           {name: "Morale", value: 0 },
-  "TECH_DEBT":        {name: "Technical Debt", value: 0 },
-  "MANAGEMENT":       {name: "Management", value: 0 },
-  "SPEND_RATE":       {name: "Spend Rate", value: 0 }
+  "PERCENT_COMPLETE": {name: "% Complete", value: 0, change_rate: 0.5 },
+  "MORALE":           {name: "Morale", value: 0, change_rate: 2 },
+  "TECH_DEBT":        {name: "Technical Debt", value: 0, change_rate: 1 },
+  "MANAGEMENT":       {name: "Management", value: 0, change_rate: 1 },
+  "SPEND_RATE":       {name: "Spend Rate", value: 0, change_rate: 5 }
 };
 
 var Game = (function() {
@@ -19,7 +19,7 @@ var Game = (function() {
         data_stats[id].value = 100;
       }
       
-      data_stats[id].value += deltas[id].delta;
+      data_stats[id].value += deltas[id].delta * data_stats[id].change_rate;
     }
   }
 
@@ -48,9 +48,9 @@ var Game = (function() {
     // simulation
     for (var id in data_stats) {
       if (data_stats[id].value > 50) {
-        data_stats[id].value -= 1;
+        data_stats[id].value -= 1 * data_stats[id].change_rate;
       } else if (data_stats[id].value < 50) {
-        data_stats[id].value += 1;
+        data_stats[id].value += 1 * data_stats[id].change_rate;
       }
     }
 
