@@ -16,7 +16,7 @@ var StatsList = React.createClass({
   },
   render: function() {
       var state = this.state;
-      var statsNodes = this.props.data.map(function (stat) {
+      var statsNodes = this.props.game.statistics.map(function (stat) {
         return (
           <StatsBox name={stat.name} progress={stat.progress + state.ticks} />
         );

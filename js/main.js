@@ -8,19 +8,10 @@ var FbIntegration = require('./fbIntegration.js');
 
 var Game = require('./game.js');
 var game = new Game();
-//game.addTickListener(function(){console.log('tick')});
 game.start();
 
-var data_stats = [
-  {name: "% Complete", progress: 0 },
-  {name: "Morale", progress: 0 },
-  {name: "Technical Debt", progress: 0 },
-  {name: "Management", progress: 0 },
-  {name: "Spend Rate", progress: 0 }
-];
-
 React.render(
-	<StatsList data={data_stats} game={game}/>,
+	<StatsList game={game}/>,
 	document.getElementById('content-stats')
 );
 
