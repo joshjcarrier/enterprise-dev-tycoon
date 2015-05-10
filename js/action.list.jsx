@@ -5,7 +5,7 @@ var actions = {
   "DEMO": {
     name: "Code freeze",
     deltas: {
-      "PERCENT_COMPLETE": {delta: 0 },
+      "PERCENT_COMPLETE": {delta: -5 },
       "MORALE":           {delta: -25 },
       "TECH_DEBT":        {delta: 0 },
       "MANAGEMENT":       {delta: 50 },

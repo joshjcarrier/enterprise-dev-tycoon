@@ -1,9 +1,9 @@
 var data_stats = {
-  "PERCENT_COMPLETE": {name: "% Complete", value: 0, change_rate: 0.5 },
-  "MORALE":           {name: "Morale", value: 0, change_rate: 2 },
-  "TECH_DEBT":        {name: "Technical Debt", value: 0, change_rate: 1 },
-  "MANAGEMENT":       {name: "Management", value: 0, change_rate: 1 },
-  "SPEND_RATE":       {name: "Spend Rate", value: 0, change_rate: 5 }
+  "PERCENT_COMPLETE": {name: "% Complete", value: 0, equilibrium: 100, change_rate: 0.5 },
+  "MORALE":           {name: "Morale", value: 0, equilibrium: 50, change_rate: 2 },
+  "TECH_DEBT":        {name: "Technical Debt", value: 0, equilibrium: 90, change_rate: 1 },
+  "MANAGEMENT":       {name: "Management", value: 0, equilibrium: 100, change_rate: 1 },
+  "SPEND_RATE":       {name: "Spend Rate", value: 0, equilibrium: 50, change_rate: 5 }
 };
 
 var Game = (function() {
@@ -15,11 +15,13 @@ var Game = (function() {
     console.log("Game#update: " + action.name);
     var deltas = action.deltas;
     for (var id in deltas) {
+      data_stats[id].value += deltas[id].delta;
+
       if(data_stats[id].value > 100) {
         data_stats[id].value = 100;
+      } else if(data_stats[id].value < 0) {
+        data_stats[id].value = 0;
       }
-      
-      data_stats[id].value += deltas[id].delta * data_stats[id].change_rate;
     }
   }
 
@@ -47,9 +49,9 @@ var Game = (function() {
 	Game.prototype.__tick = function() {
     // simulation
     for (var id in data_stats) {
-      if (data_stats[id].value > 50) {
+      if (data_stats[id].value > data_stats[id].equilibrium) {
         data_stats[id].value -= 1 * data_stats[id].change_rate;
-      } else if (data_stats[id].value < 50) {
+      } else if (data_stats[id].value < data_stats[id].equilibrium) {
         data_stats[id].value += 1 * data_stats[id].change_rate;
       }
     }
