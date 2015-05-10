@@ -10,7 +10,12 @@ var actions = {
       "TECH_DEBT":        {delta: 0 },
       "MANAGEMENT":       {delta: 50 },
       "SPEND_RATE":       {delta: 0 }
-    }
+    },
+    quotes: [
+      "Entering Milestone Quality (MQ) phase!",
+      "Master branch has been locked!",
+      "Waiting for full test pass..."
+    ]
   },
   "REWRITE": {
     name: "Dump codebase",
@@ -20,7 +25,11 @@ var actions = {
       "TECH_DEBT":        {delta: -100 },
       "MANAGEMENT":       {delta: 100 },
       "SPEND_RATE":       {delta: 100 }
-    }
+    },
+    quotes: [
+      "New tech stack will solve all our previous problems!",
+      "An empty git repo has been force-pushed to HEAD!"
+    ]
   }
 };
 
